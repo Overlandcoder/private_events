@@ -1,2 +1,0 @@
-class EventsAttended < ApplicationRecord
-end
