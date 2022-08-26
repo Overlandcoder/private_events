@@ -10,6 +10,10 @@
   <% end %>
 </ul>
 
-<%= button_to "Attend Event", invitations_path,
-    params: { invitation: { attendee_id: current_user.id, created_event_id: @event.id } },
-    :method => :post %>
+<% if @event.attendees.include?(current_user) %>
+  <%= "You've chosen to attend this event." %>
+<% else%>
+  <%= button_to "Attend Event", invitations_path,
+        params: { invitation: { attendee_id: current_user.id, created_event_id: @event.id } },
+        :method => :post %>
+<% end %>
