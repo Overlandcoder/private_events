@@ -2,6 +2,14 @@
 
 <p><%= @event.date %></p>
 
+<h2>Attendees:</h2>
+
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <li><%= attendee.email %></li>
+  <% end %>
+</ul>
+
 <%= button_to "Attend Event", invitations_path,
     params: { invitation: { attendee_id: current_user.id, created_event_id: @event.id } },
     :method => :post %>
