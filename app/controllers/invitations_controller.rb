@@ -4,10 +4,11 @@ class InvitationsController < ApplicationController
   end
 
   def create
+
     @invitation = current_user.invitations.build(invitation_params)
 
     if @invitation.save!
-      redirect_to :back,
+      redirect_to root_path,
       notice: "You've been added to this event's list of attendees."
     else
       render :new, status: :unprocessable_entity
@@ -16,6 +17,6 @@ class InvitationsController < ApplicationController
 
   private
   def invitation_params
-    params.require(:invitations).permit(:attendee_id, :created_event_id)
+    params.require(:invitation).permit(:attendee_id, :created_event_id)
   end
 end
