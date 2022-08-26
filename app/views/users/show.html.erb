@@ -1,13 +1,24 @@
 <ul>
-  <h3>Events Created:</h3>
-  <% @user.created_events.each do |event| %>
-      <li><%= "#{event.name.capitalize} #{event.date}" %></li>
+  <h3>Events Created</h3>
+  <% if @user.created_events.empty? %>
+    <%= "None" %>
   <% end %>
+  <% @user.created_events.each do |created_event| %>
+      <li><%= link_to created_event.name.capitalize, created_event %></li>
+  <% end %>
+  <%= button_to "Create Event", new_event_path, :method => :get %>
 </ul>
 
 <ul>
-  <h3>Events Attended:</h3>
-  <% @user.attended_events.each do |event| %>
-      <li><%= link_to event.name, event %></li>
+  <h3>Events Attended</h3>
+  <h4>Past:</h3>
+  <% @user.attended_events.where("date < ?", Date.current).each do |past_event| %>
+    <li><%= link_to past_event.name.capitalize, past_event %></li>
   <% end %>
+
+  <h4>Future:</h3>
+  <% @user.attended_events.where("date > ?", Date.current).each do |future_event| %>
+    <li><%= link_to future_event.name.capitalize, future_event %></li>
+  <% end %>
+  <%= button_to "Attend New Events", events_path, :method => :get %>
 </ul>
