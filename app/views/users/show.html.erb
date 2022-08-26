@@ -3,4 +3,8 @@
   <% @user.created_events.each do |event| %>
       <li><%= "#{event.name.capitalize} #{event.date}" %></li>
   <% end %>
+  <h3>Events Attended:</h2>
+  <% @user.attended_events.each do |event| %>
+      <li><%= "#{event.name.capitalize} #{event.date}" %></li>
+  <% end %>
 </ul>
