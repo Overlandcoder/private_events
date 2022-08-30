@@ -12,12 +12,12 @@
 <ul>
   <h3>Events Attended</h3>
   <h4>Past:</h3>
-  <% @user.attended_events.where("date < ?", Date.current).each do |past_event| %>
+  <% @user.attended_events.in_the_past.each do |past_event| %>
     <li><%= link_to past_event.name.capitalize, past_event %></li>
   <% end %>
 
   <h4>Future:</h3>
-  <% @user.attended_events.where("date > ?", Date.current).each do |future_event| %>
+  <% @user.attended_events.in_the_future.each do |future_event| %>
     <li><%= link_to future_event.name.capitalize, future_event %></li>
   <% end %>
   <%= button_to "Attend New Events", events_path, :method => :get %>
