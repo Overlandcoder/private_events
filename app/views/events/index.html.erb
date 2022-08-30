@@ -1,10 +1,20 @@
 <h1>Events</h1>
 
+<h2>Past</h2>
 <ul>
-  <% @events.each do |event| %>
+  <% @events.in_the_past.each do |past_event| %>
     <li>
-      <p>Event: <%= link_to event.name, event %></p>
+      <p><%= link_to past_event.name, past_event %></p>
     </li>
+  <% end %>
+</ul>
+
+<h2>Future</h2>
+<ul>
+  <% @events.in_the_future.each do |future_event| %>
+  <li>
+    <p><%= link_to future_event.name, future_event %>
+  </li>
   <% end %>
 </ul>
 
