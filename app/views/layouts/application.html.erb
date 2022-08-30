@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
     <%= link_to "Events", events_path %>
     <%= link_to "Users", users_path %>
-    <%= link_to "View Profile", user_path(current_user.id) %>
+    <%= link_to "View Profile", user_path(current_user.id) if current_user %>
   </head>
 
   <body>
